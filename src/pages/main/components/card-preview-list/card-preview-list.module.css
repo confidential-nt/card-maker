@@ -1,0 +1,11 @@
+@value makerBlue from "/src/common/colors.css";
+
+.previewList {
+  padding: 25px 60px;
+}
+
+.previewList h2 {
+  text-align: center;
+  color: makerBlue;
+  margin-bottom: 60px;
+}

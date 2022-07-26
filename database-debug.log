@@ -1,0 +1,6 @@
+13:11:45.012 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+13:11:45.250 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:7070
+13:11:57.820 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - business-card-maker-d721c-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 173ms, init: 0ms
+13:11:57.902 [NamespaceSystem-blocking-namespace-operation-dispatcher-8:business-card-maker-d721c-default-rtdb$-1006496733:] INFO com.firebase.core.namespace.StateManager - Namespace business-card-maker-d721c-default-rtdb status Active to Active
+13:11:58.011 [NamespaceSystem-blocking-namespace-operation-dispatcher-8:business-card-maker-d721c-default-rtdb$903992025:] INFO com.firebase.core.namespace.StateManager - Namespace business-card-maker-d721c-default-rtdb status Active to Active
+13:19:54.334 [NamespaceSystem-akka.actor.default-dispatcher-13] INFO com.firebase.core.namespace.NamespaceActor - business-card-maker-d721c successfully activated FBKV (SurveyIdle(0)) wait: 16ms, init: 0ms

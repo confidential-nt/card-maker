@@ -1,0 +1,13 @@
+@value makerLightGrey from "/src/common/colors.css";
+@value makerBlue from "/src/common/colors.css";
+
+.makerList {
+  border-right: 1px solid makerLightGrey;
+  padding: 35px 15px;
+}
+
+.makerList h2 {
+  text-align: center;
+  color: makerBlue;
+  margin-bottom: 35px;
+}

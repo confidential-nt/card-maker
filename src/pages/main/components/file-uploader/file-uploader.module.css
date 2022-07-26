@@ -1,0 +1,61 @@
+input[type="file"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
+
+.fileUploaderLabel {
+  /* background-color: #ffeaea; */
+  background-color: #e9e6e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.fileUploaderLabel:hover {
+  background-color: #f2eeee;
+}
+
+.fileLoadingLabel {
+  background-color: #fff;
+}
+
+.spinnerContainer {
+  width: 18px;
+  height: 18px;
+}
+
+.fileLoadingLabel img {
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 50%;
+  animation: rotateSpinner 1s linear infinite;
+}
+
+.fileLoadedLabel {
+  background-color: #ffeaea;
+}
+
+.fileLoadedLabel:hover {
+  background-color: #faeeee;
+}
+
+@keyframes rotateSpinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
