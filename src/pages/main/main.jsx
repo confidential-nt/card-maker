@@ -15,32 +15,30 @@ const Main = (props) => {
       return;
     }
 
-    props.database.readData("cards", (key, val) => {
-      if (val.uid === props.user.uid) {
-        if (!cards.find((card) => card.id === val.id)) {
-          console.log("val : ", val);
-          makeCard(val);
-        }
-      }
+    const cardDataArr = [];
+
+    const readyCard = async () => {
+      const snapShot = await props.database.readData("cards");
+      snapShot.forEach((childSnapShot) => {
+        cardDataArr.push(childSnapShot.val());
+      });
+    };
+
+    readyCard().then(() => {
+      cardDataArr.push({});
+      setCard(cardDataArr);
     });
   }, []);
 
   const makeCard = (cardObj) => {
     const newCardArr = [...cards];
-    console.log("new Card Arr1 :", newCardArr);
+
     const targetIdx = newCardArr.findIndex((el) => el.id === undefined);
-    console.log("target Index : ", targetIdx);
+
     newCardArr.splice(targetIdx, 0, cardObj);
 
-    console.log("new Card Arr2 :", newCardArr);
     setCard(newCardArr);
-
-    props.database.readDataById("cards", cardObj.id, (val) => {
-      if (!val) {
-        props.database.writeData("cards", cardObj);
-        saveCardsIdOnDB(newCardArr);
-      }
-    });
+    saveCardsIdOnDB(newCardArr);
   };
 
   const saveCardsIdOnDB = (newCardArr) => {

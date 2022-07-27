@@ -1,4 +1,12 @@
-import { getDatabase, onValue, push, ref, set } from "firebase/database";
+import {
+  child,
+  get,
+  getDatabase,
+  onValue,
+  push,
+  ref,
+  set,
+} from "firebase/database";
 
 class Database {
   db;
@@ -12,10 +20,7 @@ class Database {
     if (id) {
       set(ref(this.db, `${root}/` + id), object);
     } else {
-      newDataRef.then((val) => {
-        object.id = val.key;
-        set(newDataRef, object);
-      });
+      set(newDataRef, object);
     }
 
     if (callback) {
@@ -37,18 +42,8 @@ class Database {
     );
   }
 
-  readData(root, callback) {
-    onValue(
-      ref(this.db, `/${root}/`),
-      (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-          callback(childSnapshot.key, childSnapshot.val());
-        });
-      },
-      {
-        onlyOnce: true,
-      }
-    );
+  readData(root) {
+    return get(child(ref(this.db), `/${root}/`));
   }
 }
 
