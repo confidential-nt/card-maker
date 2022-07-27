@@ -20,7 +20,9 @@ const Main = (props) => {
     const readyCard = async () => {
       const snapShot = await props.database.readData("cards");
       snapShot.forEach((childSnapShot) => {
-        cardDataArr.push(childSnapShot.val());
+        if (childSnapShot.val().uid === props.user.uid) {
+          cardDataArr.push(childSnapShot.val());
+        }
       });
     };
 
@@ -38,6 +40,7 @@ const Main = (props) => {
     newCardArr.splice(targetIdx, 0, cardObj);
 
     setCard(newCardArr);
+    props.database.writeData("cards", cardObj, cardObj.id);
     saveCardsIdOnDB(newCardArr);
   };
 

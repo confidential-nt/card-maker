@@ -30,16 +30,8 @@ class Database {
     }
   }
 
-  readDataById(root, id, callback) {
-    onValue(
-      ref(this.db, `/${root}/` + id),
-      (snapshot) => {
-        callback(snapshot.val());
-      },
-      {
-        onlyOnce: true,
-      }
-    );
+  readDataById(root, id) {
+    return get(child(ref(this.db), `${root}/${id}`));
   }
 
   readData(root) {

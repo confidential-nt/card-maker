@@ -39,12 +39,16 @@ const Login = ({ user, AuthSys, onSocialLogin, database }) => {
       cards: JSON.stringify([]),
     };
     onSocialLogin(userObject, authSys);
-    database.readDataById("users", userInfo.uid, (value) => {
-      console.log("value");
-      if (!value) {
-        database.writeData("users", userObject, userInfo.uid);
-      }
-    });
+    // database.readDataById("users", userInfo.uid, (value) => {
+    //   console.log("value");
+    //   if (!value) {
+    //     database.writeData("users", userObject, userInfo.uid);
+    //   }
+    // });
+    const userSnapShot = await database.readDataById("users", userInfo.uid);
+    if (!userSnapShot.exists()) {
+      database.writeData("users", userObject, userInfo.uid);
+    }
   };
 
   return (
