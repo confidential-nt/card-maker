@@ -33,7 +33,7 @@ const Main = (props) => {
     newCardArr.splice(targetIdx, 0, cardObj);
 
     console.log("new Card Arr2 :", newCardArr);
-    setCard(newCardArr, "sad");
+    setCard(newCardArr);
 
     props.database.readDataById("cards", cardObj.id, (val) => {
       if (!val) {
