@@ -1,3 +1,4 @@
+import { ref, update } from "firebase/database";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CardMakerList from "./components/card-maker-list/card-maker-list";
@@ -14,26 +15,41 @@ const Main = (props) => {
       return;
     }
 
-    // const data = {};
-    // props.database.readData("cards", data);
-    // console.log(data);
-    // // console.log(data);
-    // // if (data.length) {
-    // //   data.push({});
-    // //   setCard(data);
-    // // }
+    props.database.readData("cards", (key, val) => {
+      if (val.uid === props.user.uid) {
+        if (!cards.find((card) => card.id === val.id)) {
+          console.log("val : ", val);
+          makeCard(val);
+        }
+      }
+    });
   }, []);
 
   const makeCard = (cardObj) => {
     const newCardArr = [...cards];
-
+    console.log("new Card Arr1 :", newCardArr);
     const targetIdx = newCardArr.findIndex((el) => el.id === undefined);
+    console.log("target Index : ", targetIdx);
     newCardArr.splice(targetIdx, 0, cardObj);
 
-    // props.database.writeCardData(cardObj);
-    props.database.writeCardDataTwo(cardObj);
+    console.log("new Card Arr2 :", newCardArr);
+    setCard(newCardArr, "sad");
 
-    setCard(newCardArr);
+    props.database.readDataById("cards", cardObj.id, (val) => {
+      if (!val) {
+        props.database.writeData("cards", cardObj);
+        saveCardsIdOnDB(newCardArr);
+      }
+    });
+  };
+
+  const saveCardsIdOnDB = (newCardArr) => {
+    const updates = {};
+
+    updates["users/" + props.user.uid + "/cards"] = JSON.stringify(
+      newCardArr.map((card) => card.id)
+    );
+    update(ref(props.database.db), updates);
   };
 
   const updateCard = (cardObj) => {

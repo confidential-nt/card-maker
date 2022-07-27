@@ -1,15 +1,4 @@
-import {
-  child,
-  get,
-  getDatabase,
-  onChildAdded,
-  onValue,
-  orderByChild,
-  push,
-  query,
-  ref,
-  set,
-} from "firebase/database";
+import { getDatabase, onValue, push, ref, set } from "firebase/database";
 
 class Database {
   db;
@@ -17,42 +6,21 @@ class Database {
     this.db = getDatabase(app);
   }
 
-  writeCardData(cardDataObject) {
-    set(ref(this.db, "cards/" + cardDataObject.id), cardDataObject);
-  }
-
-  writeCardDataTwo(cardDataObject) {
-    const cardListRef = ref(this.db, "cards");
-    const newCardRef = push(cardListRef);
-    set(ref(this.db, "cards/" + newCardRef.key), cardDataObject);
-    // console.log(newCardRef.key);
-    // newCardRef.then((val) => {
-    //   cardDataObject.id = val.key;
-    //   set(newCardRef, cardDataObject);
-    // });
-  }
-
-  writeUserData(userId, userObject) {
-    // {uid: ..., cards: [] 정도로만.}
-    // 사용자가 로그인하면...아니면 firebase 자체적인걸 사용? 아무튼...
-    // get(child(this.db, `users/${userId}`)).then((snapshot) => {
-    //   console.log("snapshot?", snapshot);
-    //   // if (!snapshot) {
-    //   //   set(ref(this.db, "users/" + userId), userObject);
-    //   // }
-    // });
-    set(ref(this.db, "users/" + userId), userObject);
-  }
-
-  writeData(root, object, id = null) {
+  writeData(root, object, id = null, callback = null) {
+    const dataListRef = ref(this.db, `${root}`);
+    const newDataRef = push(dataListRef);
     if (id) {
       set(ref(this.db, `${root}/` + id), object);
     } else {
-      const dataListRef = ref(this.db, `${root}`);
-      const newDataRef = push(dataListRef);
       newDataRef.then((val) => {
         object.id = val.key;
         set(newDataRef, object);
+      });
+    }
+
+    if (callback) {
+      newDataRef.then((val) => {
+        callback(val);
       });
     }
   }
@@ -69,44 +37,18 @@ class Database {
     );
   }
 
-  readData(root, target) {
+  readData(root, callback) {
     onValue(
       ref(this.db, `/${root}/`),
       (snapshot) => {
-        // snapshot.forEach((childSnapshot) => {
-        //   target.push(childSnapshot.val());
-        // });
-        target["result"] = snapshot.val();
+        snapshot.forEach((childSnapshot) => {
+          callback(childSnapshot.key, childSnapshot.val());
+        });
       },
       {
         onlyOnce: true,
       }
     );
-  }
-
-  readCardData() {
-    // onValue(
-    //   ref(this.db, "cards"),
-    //   (snapshot) => {
-    //     let i = 1;
-    //     // let data = [];
-    //     snapshot.forEach((childSnapshot) => {
-    //       if (i > snapshot.size) return data;
-    //       if(i === 1){
-
-    //       }
-    //       const childKey = childSnapshot.key;
-    //       const childData = childSnapshot.val();
-    //       // data.push(childData);
-    //       i++;
-    //       // console.log(data);
-    //     });
-    //   },
-    //   {
-    //     onlyOnce: true,
-    //   }
-    // );
-    const cardListRef = ref(this.db, "cards");
   }
 }
 

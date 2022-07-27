@@ -1,0 +1,27 @@
+useEffect(() => {
+  //뒤의 1000 숫자는 1초를 뜻함
+  //1초 뒤에 실행되는 코드들이 담겨 있는 함수
+  setTimeout(() => {
+    //헤더의 타이틀 변경
+    navigation.setOptions({
+      title: "생활의 꿀팁",
+    });
+    firebase_db
+      .ref("/tip")
+      .once("value")
+      .then((snapshot) => {
+        console.log("파이어베이스에서 데이터를 가져왔습니다.");
+        let tip = snapshot.val();
+        setState(tip);
+        setCateState(tip);
+        getLocation();
+        setReady(false);
+      });
+    //꿀팁 데이터로 모두 초기화 준비
+    // let tip = data.tip;
+    // setState(tip)
+    // setCateState(tip)
+    // getLocation()
+    // setReady(false)
+  }, 1000);
+}, []);

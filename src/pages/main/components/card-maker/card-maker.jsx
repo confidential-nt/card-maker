@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import styles from "./card-maker.module.css";
 import FileUploader from "../file-uploader/file-uploader";
+import { child, push, ref } from "firebase/database";
 
 const CardMaker = ({
   card,
@@ -28,6 +29,7 @@ const CardMaker = ({
     );
 
     onMakeCard(cardObj);
+
     target.reset();
   };
 
@@ -39,17 +41,21 @@ const CardMaker = ({
     email,
     desc,
     file
-  ) => ({
-    name,
-    company,
-    color,
-    position,
-    email,
-    desc,
-    file,
-    id: Date.now(),
-    uid: user.uid,
-  });
+  ) => {
+    const newId = push(child(ref(database.db), "cards")).key;
+
+    return {
+      name,
+      company,
+      color,
+      position,
+      email,
+      desc,
+      file,
+      id: newId,
+      uid: user.uid,
+    };
+  };
 
   const handleCardChange = (option) => {
     if (!card.id) return;

@@ -17,9 +17,30 @@ const Login = ({ user, AuthSys, onSocialLogin, database }) => {
   const socialLogin = async (provider) => {
     const authSys = new AuthSys(provider);
     const userInfo = await authSys.login();
-    const userObject = { ...userInfo, cards: [{}] };
+    const {
+      accessToken,
+      displayName,
+      email,
+      emailVerified,
+      isAnonymous,
+      metadata,
+      photoURL,
+      uid,
+    } = userInfo;
+    const userObject = {
+      accessToken,
+      displayName,
+      email,
+      emailVerified,
+      isAnonymous,
+      metadata,
+      photoURL,
+      uid,
+      cards: JSON.stringify([]),
+    };
     onSocialLogin(userObject, authSys);
-    data.readDataById("users", userInfo.uid, (value) => {
+    database.readDataById("users", userInfo.uid, (value) => {
+      console.log("value");
       if (!value) {
         database.writeData("users", userObject, userInfo.uid);
       }
