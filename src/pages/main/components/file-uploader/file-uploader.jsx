@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./file-uploader.module.css";
 
-const FileUploader = ({ handleCardChange, card, idx }) => {
+const FileUploader = ({ handleCardChange, card, idx, cloudinary }) => {
   const [loading, setLoadingState] = useState(false);
   const [file, setFile] = useState(null);
 

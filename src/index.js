@@ -10,6 +10,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import Database from "./service/database/database";
 import { connectDatabaseEmulator } from "firebase/database";
+import Cloudinary from "./service/cloudinary/cloudinary";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -34,14 +35,18 @@ const database = new Database(app);
 if (window.location.hostname === "localhost") {
   connectDatabaseEmulator(database.db, "localhost", 7070);
 }
+const cloudinaryHTTPClient = axios.create({
+  baseURL: `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/image/upload`,
+});
+const cloudinary = new Cloudinary(cloudinaryHTTPClient);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <App database={database} />
+    <App database={database} cloudinary={cloudinary} />
   </BrowserRouter>
 );
 
 // 만들어야 할 것.
-// 1. 로그인 화면. url = "/" => 유저가 로그인되어있지 않다면, 떠야함.
+// 1. 로그인 화면. url =`"/" => 유저가 로그인되어있지 않다면, 떠야`.
 // 2. 메인 화면. => 유저가 로그인되어 있다면, "/" 에서 바로 "/app" 으로 가야함.

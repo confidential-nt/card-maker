@@ -9,6 +9,7 @@ const CardMakerList = ({
   onDeleteCard,
   user,
   database,
+  cloudinary,
 }) => (
   <section className={styles.makerList}>
     <h2>Card Maker</h2>
@@ -22,6 +23,7 @@ const CardMakerList = ({
         idx={idx}
         user={user}
         database={database}
+        cloudinary={cloudinary}
       />
     ))}
   </section>

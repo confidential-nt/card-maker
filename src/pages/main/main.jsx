@@ -57,7 +57,7 @@ const Main = (props) => {
     const newCardArr = [...cards];
     const targetCardIdx = cards.findIndex((card) => card.id === cardObj.id);
     newCardArr[targetCardIdx] = cardObj;
-
+    props.database.updateDataById("cards", cardObj.id, cardObj);
     setCard(newCardArr);
   };
 
@@ -65,6 +65,7 @@ const Main = (props) => {
     const newCardArr = [...cards];
     const targetCardIdx = cards.findIndex((card) => card.id === cardObj.id);
     newCardArr.splice(targetCardIdx, 1);
+    props.database.deleteDataById("cards", cardObj.id);
 
     setCard(newCardArr);
   };
@@ -79,6 +80,7 @@ const Main = (props) => {
           onDeleteCard={deleteCard}
           user={props.user}
           database={props.database}
+          cloudinary={props.cloudinary}
         />
         <CardPreviewList cards={cards} user={props.user} />
       </main>

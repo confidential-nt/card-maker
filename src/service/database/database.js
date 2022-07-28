@@ -6,6 +6,7 @@ import {
   push,
   ref,
   set,
+  update,
 } from "firebase/database";
 
 class Database {
@@ -14,19 +15,13 @@ class Database {
     this.db = getDatabase(app);
   }
 
-  writeData(root, object, id = null, callback = null) {
+  writeData(root, object, id = null) {
     const dataListRef = ref(this.db, `${root}`);
     const newDataRef = push(dataListRef);
     if (id) {
       set(ref(this.db, `${root}/` + id), object);
     } else {
       set(newDataRef, object);
-    }
-
-    if (callback) {
-      newDataRef.then((val) => {
-        callback(val);
-      });
     }
   }
 
@@ -36,6 +31,23 @@ class Database {
 
   readData(root) {
     return get(child(ref(this.db), `/${root}/`));
+  }
+
+  updateDataById(root, id = "", newValue, path = []) {
+    const dist = `${root}/${id}/${path.join("/")}`;
+    const updates = {};
+
+    updates[`${dist}`] = newValue;
+    update(ref(this.db), updates);
+  }
+
+  deleteDataById(root, id = "", path = []) {
+    //
+    const dist = `${root}/${id}/${path.join("/")}`;
+    const updates = {};
+
+    updates[`${dist}`] = null;
+    update(ref(this.db), updates);
   }
 }
 

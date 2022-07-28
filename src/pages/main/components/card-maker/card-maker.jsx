@@ -11,6 +11,7 @@ const CardMaker = ({
   idx,
   user,
   database,
+  cloudinary,
 }) => {
   const formRef = useRef();
 
@@ -127,6 +128,7 @@ const CardMaker = ({
           handleCardChange={handleCardChange}
           card={card}
           idx={idx}
+          cloudinary={cloudinary}
         />
         {card.id ? (
           <button

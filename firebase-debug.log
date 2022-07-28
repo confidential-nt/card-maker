@@ -10102,3 +10102,136 @@ Issues? Report them at https://github.com/firebase/firebase-tools/issues and att
  
 [debug] [2022-07-27T15:55:36.962Z] 00:55:36.962 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - business-card-maker-d721c successfully activated FBKV (SurveyIdle(0)) wait: 10ms, init: 0ms
  {"metadata":{"emulator":{"name":"database"},"message":"00:55:36.962 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - business-card-maker-d721c successfully activated FBKV (SurveyIdle(0)) wait: 10ms, init: 0ms\n"}}
+[debug] [2022-07-27T23:32:07.759Z] ----------------------------------------------------------------------
+[debug] [2022-07-27T23:32:07.761Z] Command:       /usr/local/bin/firebase /Users/bagsomi/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase emulators:start
+[debug] [2022-07-27T23:32:07.761Z] CLI Version:   11.3.0
+[debug] [2022-07-27T23:32:07.761Z] Platform:      darwin
+[debug] [2022-07-27T23:32:07.761Z] Node Version:  v16.16.0
+[debug] [2022-07-27T23:32:07.765Z] Time:          Thu Jul 28 2022 08:32:07 GMT+0900 (GMT+09:00)
+[debug] [2022-07-27T23:32:07.766Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-07-27T23:32:07.851Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-07-27T23:32:07.854Z] > authorizing via signed-in user (youyoy689@gmail.com)
+[debug] [2022-07-27T23:32:08.477Z] openjdk version "17.0.1" 2021-10-19
+
+[debug] [2022-07-27T23:32:08.481Z] OpenJDK Runtime Environment (build 17.0.1+12-39)
+OpenJDK 64-Bit Server VM (build 17.0.1+12-39, mixed mode, sharing)
+
+[debug] [2022-07-27T23:32:08.486Z] Parsed Java major version: 17
+[info] i  emulators: Starting emulators: auth, functions, database, hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: auth, functions, database, hosting"}}
+[debug] [2022-07-27T23:32:08.526Z] [hub] writing locator at /var/folders/9h/hgcc4bts3bv071jx8mwf28nw0000gn/T/hub-business-card-maker-d721c.json
+[warn] ⚠  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: firestore, pubsub, storage {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mfirestore, pubsub, storage\u001b[22m"}}
+[info] ✔  functions: Using node@16 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Using node@16 from host."}}
+[debug] [2022-07-27T23:32:08.901Z] defaultcredentials: writing to file /Users/bagsomi/.config/firebase/youyoy689_gmail_com_application_default_credentials.json
+[debug] [2022-07-27T23:32:08.905Z] Setting GAC to /Users/bagsomi/.config/firebase/youyoy689_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /Users/bagsomi/.config/firebase/youyoy689_gmail_com_application_default_credentials.json"}}
+[debug] [2022-07-27T23:32:08.908Z] > refreshing access token with scopes: []
+[debug] [2022-07-27T23:32:08.912Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2022-07-27T23:32:08.912Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-07-27T23:32:09.203Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2022-07-27T23:32:09.205Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-07-27T23:32:09.251Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/business-card-maker-d721c/adminSdkConfig [none]
+[debug] [2022-07-27T23:32:09.768Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/business-card-maker-d721c/adminSdkConfig 200
+[debug] [2022-07-27T23:32:09.770Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/business-card-maker-d721c/adminSdkConfig {"projectId":"business-card-maker-d721c","databaseURL":"https://business-card-maker-d721c-default-rtdb.firebaseio.com","storageBucket":"business-card-maker-d721c.appspot.com"}
+[debug] [2022-07-27T23:32:09.817Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/business-card-maker-d721c [none]
+[debug] [2022-07-27T23:32:10.265Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/business-card-maker-d721c 200
+[debug] [2022-07-27T23:32:10.267Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/business-card-maker-d721c {"projectId":"business-card-maker-d721c","projectNumber":"127174221003","displayName":"Business Card Maker","name":"projects/business-card-maker-d721c","resources":{"hostingSite":"business-card-maker-d721c","realtimeDatabaseInstance":"business-card-maker-d721c-default-rtdb"},"state":"ACTIVE","etag":"1_15a70dd3-1179-423c-9bf0-ec72f3180a9e"}
+[debug] [2022-07-27T23:32:10.268Z] database rules config:  [{"instance":"business-card-maker-d721c-default-rtdb","rules":"/Users/bagsomi/react-study/card-maker/database.rules.json"}]
+[debug] [2022-07-27T23:32:10.285Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2022-07-27T23:32:10.288Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-07-27T23:32:10.288Z] Ignoring unsupported arg: rules {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: rules"}}
+[debug] [2022-07-27T23:32:10.288Z] Starting Database Emulator with command {"binary":"java","args":["-Duser.language=en","-jar","/Users/bagsomi/.cache/firebase/emulators/firebase-database-emulator-v4.8.0.jar","--host","localhost","--port",7070,"--functions_emulator_host","localhost","--functions_emulator_port",5001],"optionalArgs":["port","host","functions_emulator_port","functions_emulator_host"],"joinArgs":false} {"metadata":{"emulator":{"name":"database"},"message":"Starting Database Emulator with command {\"binary\":\"java\",\"args\":[\"-Duser.language=en\",\"-jar\",\"/Users/bagsomi/.cache/firebase/emulators/firebase-database-emulator-v4.8.0.jar\",\"--host\",\"localhost\",\"--port\",7070,\"--functions_emulator_host\",\"localhost\",\"--functions_emulator_port\",5001],\"optionalArgs\":[\"port\",\"host\",\"functions_emulator_port\",\"functions_emulator_host\"],\"joinArgs\":false}"}}
+[info] i  database: Database Emulator logging to database-debug.log {"metadata":{"emulator":{"name":"database"},"message":"Database Emulator logging to \u001b[1mdatabase-debug.log\u001b[22m"}}
+[debug] [2022-07-27T23:32:11.944Z] 08:32:11.943 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+ {"metadata":{"emulator":{"name":"database"},"message":"08:32:11.943 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started\n"}}
+[debug] [2022-07-27T23:32:12.202Z] 08:32:12.201 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:7070
+ {"metadata":{"emulator":{"name":"database"},"message":"08:32:12.201 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:7070\n"}}
+[debug] [2022-07-27T23:32:17.858Z] 08:32:13.514 [NamespaceSystem-akka.actor.default-dispatcher-6] INFO com.firebase.core.namespace.NamespaceActor - business-card-maker-d721c-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 150ms, init: 0ms
+ {"metadata":{"emulator":{"name":"database"},"message":"08:32:13.514 [NamespaceSystem-akka.actor.default-dispatcher-6] INFO com.firebase.core.namespace.NamespaceActor - business-card-maker-d721c-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 150ms, init: 0ms\n"}}
+[debug] [2022-07-27T23:32:17.871Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/business-card-maker-d721c/sites 
+[debug] [2022-07-27T23:32:19.185Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/business-card-maker-d721c/sites 200
+[debug] [2022-07-27T23:32:19.185Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/business-card-maker-d721c/sites {"sites":[{"name":"projects/business-card-maker-d721c/sites/business-card-maker-d721c","defaultUrl":"https://business-card-maker-d721c.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2022-07-27T23:32:19.185Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/business-card-maker-d721c/webApps/-/config [none]
+[debug] [2022-07-27T23:32:20.294Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/business-card-maker-d721c/webApps/-/config 200
+[debug] [2022-07-27T23:32:20.294Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/business-card-maker-d721c/webApps/-/config {"projectId":"business-card-maker-d721c","appId":"1:127174221003:web:1a1dcc69cf33ccfe944f4e","databaseURL":"https://business-card-maker-d721c-default-rtdb.firebaseio.com","storageBucket":"business-card-maker-d721c.appspot.com","apiKey":"AIzaSyA_ZJ3h2EHDzVwbEcdig0eB1FGMv4z78cU","authDomain":"business-card-maker-d721c.firebaseapp.com","messagingSenderId":"127174221003","measurementId":"G-JJ3CZQKDWF"}
+[info] i  hosting: Serving hosting files from: depoly {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mdepoly\u001b[22m"}}
+[info] ✔  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[debug] [2022-07-27T23:32:20.719Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-07-27T23:32:20.720Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2022-07-27T23:32:20.720Z] Starting Emulator UI with command {"binary":"node","args":["/Users/bagsomi/.cache/firebase/emulators/ui-v1.8.1/server/server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"/Users/bagsomi/.cache/firebase/emulators/ui-v1.8.1/server/server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2022-07-27T23:32:20.912Z] Web / API server started at localhost:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at localhost:4000\n"}}
+[info] i  functions: Watching "/Users/bagsomi/react-study/card-maker/functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"/Users/bagsomi/react-study/card-maker/functions\" for Cloud Functions..."}}
+[debug] [2022-07-27T23:32:21.029Z] Validating nodejs source
+[debug] [2022-07-27T23:32:23.476Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2022-07-27T23:32:23.477Z] Building nodejs source
+[debug] [2022-07-27T23:32:23.477Z] Analyzing nodejs backend spec
+[debug] [2022-07-27T23:32:23.478Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-07-27T23:32:23.973Z] Serving at port 9005
+
+[debug] [2022-07-27T23:32:24.017Z] Got response from /__/functions.yaml {"endpoints":{"makeUppercase":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/google.firebase.database/eventTypes/ref.create","eventFilters":{"resource":"projects/_/instances/business-card-maker-d721c-default-rtdb/refs/messages/{pushId}/original"},"retry":false},"labels":{},"entryPoint":"makeUppercase"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-07-27T23:32:24.028Z] shutdown requested via /__/quitquitquit
+
+[debug] [2022-07-27T23:32:24.040Z] addRealtimeDatabaseTrigger[business-card-maker-d721c-default-rtdb] "{\"name\":\"projects/business-card-maker-d721c/locations/_/functions/us-central1-makeUppercase-0\",\"path\":\"/messages/{pushId}/original\",\"event\":\"providers/google.firebase.database/eventTypes/ref.create\",\"topic\":\"projects/business-card-maker-d721c/topics/us-central1-makeUppercase-0\"}"
+[debug] [2022-07-27T23:32:24.041Z] >>> [apiv2][query] POST http://localhost:7070/.settings/functionTriggers.json?ns=business-card-maker-d721c-default-rtdb [none]
+[debug] [2022-07-27T23:32:24.041Z] >>> [apiv2][body] POST http://localhost:7070/.settings/functionTriggers.json?ns=business-card-maker-d721c-default-rtdb "{\"name\":\"projects/business-card-maker-d721c/locations/_/functions/us-central1-makeUppercase-0\",\"path\":\"/messages/{pushId}/original\",\"event\":\"providers/google.firebase.database/eventTypes/ref.create\",\"topic\":\"projects/business-card-maker-d721c/topics/us-central1-makeUppercase-0\"}"
+[debug] [2022-07-27T23:32:24.098Z] 08:32:24.098 [NamespaceSystem-blocking-namespace-operation-dispatcher-14:business-card-maker-d721c-default-rtdb$-2100827344:] INFO com.firebase.core.namespace.StateManager - Namespace business-card-maker-d721c-default-rtdb status Active to Active
+ {"metadata":{"emulator":{"name":"database"},"message":"08:32:24.098 [NamespaceSystem-blocking-namespace-operation-dispatcher-14:business-card-maker-d721c-default-rtdb$-2100827344:] INFO com.firebase.core.namespace.StateManager - Namespace business-card-maker-d721c-default-rtdb status Active to Active\n"}}
+[debug] [2022-07-27T23:32:24.117Z] <<< [apiv2][status] POST http://localhost:7070/.settings/functionTriggers.json?ns=business-card-maker-d721c-default-rtdb 200
+[debug] [2022-07-27T23:32:24.117Z] <<< [apiv2][body] POST http://localhost:7070/.settings/functionTriggers.json?ns=business-card-maker-d721c-default-rtdb {"status":"ok"}
+[info] ✔  functions[us-central1-makeUppercase]: database function initialized. {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mdatabase\u001b[22m function initialized."}}
+[debug] [2022-07-27T23:32:24.119Z] >>> [apiv2][query] PUT http://localhost:7070/.settings/rules.json ns=business-card-maker-d721c-default-rtdb
+[debug] [2022-07-27T23:32:24.120Z] >>> [apiv2][body] PUT http://localhost:7070/.settings/rules.json "{\n  \"rules\": {\n    \".read\": \"now < 1660921200000\",\n    \".write\": \"now < 1660921200000\"\n  }\n}\n"
+[debug] [2022-07-27T23:32:24.181Z] 08:32:24.180 [NamespaceSystem-blocking-namespace-operation-dispatcher-15:business-card-maker-d721c-default-rtdb$-458416133:] INFO com.firebase.core.namespace.StateManager - Namespace business-card-maker-d721c-default-rtdb status Active to Active
+ {"metadata":{"emulator":{"name":"database"},"message":"08:32:24.180 [NamespaceSystem-blocking-namespace-operation-dispatcher-15:business-card-maker-d721c-default-rtdb$-458416133:] INFO com.firebase.core.namespace.StateManager - Namespace business-card-maker-d721c-default-rtdb status Active to Active\n"}}
+[debug] [2022-07-27T23:32:24.185Z] <<< [apiv2][status] PUT http://localhost:7070/.settings/rules.json 200
+[debug] [2022-07-27T23:32:24.185Z] <<< [apiv2][body] PUT http://localhost:7070/.settings/rules.json {"status":"ok"}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://localhost:4000                │
+└─────────────────────────────────────────────────────────────┘
+
+┌────────────────┬────────────────┬─────────────────────────────────┐
+│ Emulator       │ Host:Port      │ View in Emulator UI             │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Authentication │ localhost:9099 │ http://localhost:4000/auth      │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Functions      │ localhost:5001 │ http://localhost:4000/functions │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Database       │ localhost:7070 │ http://localhost:4000/database  │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Hosting        │ localhost:5000 │ n/a                             │
+└────────────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at localhost:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2022-07-27T23:32:37.711Z] 08:32:37.711 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - business-card-maker-d721c successfully activated FBKV (SurveyIdle(0)) wait: 9ms, init: 0ms
+ {"metadata":{"emulator":{"name":"database"},"message":"08:32:37.711 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - business-card-maker-d721c successfully activated FBKV (SurveyIdle(0)) wait: 9ms, init: 0ms\n"}}

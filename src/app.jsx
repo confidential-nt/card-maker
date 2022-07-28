@@ -6,7 +6,7 @@ import { useState } from "react";
 import HeaderLogoutBtn from "./components/header-login-btn/header-logout-btn";
 import Auth from "./service/auth/auth";
 
-function App({ database }) {
+function App({ database, cloudinary }) {
   const [user, setUser] = useState(null);
   const [mainAuthSys, setAuthSys] = useState(null); // 이거 진짜 별론데...
   const navigate = useNavigate();
@@ -54,7 +54,9 @@ function App({ database }) {
           ></Route>
           <Route
             path="/app"
-            element={<Main user={user} database={database} />}
+            element={
+              <Main user={user} database={database} cloudinary={cloudinary} />
+            }
           ></Route>
         </Routes>
         <footer className={styles.footer}>
