@@ -11,6 +11,7 @@ import { getAnalytics } from "firebase/analytics";
 import Database from "./service/database/database";
 import { connectDatabaseEmulator } from "firebase/database";
 import Cloudinary from "./service/cloudinary/cloudinary";
+import axios from "axios";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -35,10 +36,10 @@ const database = new Database(app);
 if (window.location.hostname === "localhost") {
   connectDatabaseEmulator(database.db, "localhost", 7070);
 }
-const cloudinaryHTTPClient = axios.create({
-  baseURL: `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/image/upload`,
-});
-const cloudinary = new Cloudinary(cloudinaryHTTPClient);
+// const cloudinaryHTTPClient = axios.create({
+//   url: `https://api.cloudinary.com/v1_1/dypkkfbys/image/upload`,
+// });
+const cloudinary = new Cloudinary();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

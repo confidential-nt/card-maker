@@ -1,13 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./file-uploader.module.css";
 
-const FileUploader = ({ handleCardChange, card, idx, cloudinary }) => {
+const FileUploader = ({
+  handleCardChange,
+  card,
+  idx,
+  cloudinary,
+  fileUploaderRef,
+}) => {
   const [loading, setLoadingState] = useState(false);
-  const [file, setFile] = useState(null);
+  const [file, setOtherFile] = useState(null);
 
   const id = idx;
 
-  const inputRef = useRef();
+  let isReady = false;
 
   const useDidMountEffect = (func, deps) => {
     const didMount = useRef(false);
@@ -25,24 +31,36 @@ const FileUploader = ({ handleCardChange, card, idx, cloudinary }) => {
     wait().then(() => {
       setLoadingState(false);
 
-      handleCardChange({ file });
+      handleCardChange({ fileName: file.fileName, fileUrl: file.fileUrl });
     });
   }, [loading]);
 
   const wait = () =>
-    new Promise((resolve) => setTimeout(() => resolve(), 2500));
+    new Promise((resolve) => setTimeout(() => resolve(), 5000));
 
   return (
     <>
       <input
-        ref={inputRef}
+        ref={fileUploaderRef}
         type="file"
         name="file"
         accept="image/*"
         id={id}
-        onChange={(e) => {
+        onChange={async (e) => {
           setLoadingState(true);
-          setFile(inputRef.current.files[0].name);
+
+          const formData = new FormData();
+          formData.append("file", fileUploaderRef.current.files[0]);
+          formData.append("upload_preset", "q6nxw20m");
+
+          let fileUrl;
+          const json = await cloudinary.uploadImage(formData);
+          fileUrl = json.url;
+
+          setOtherFile({
+            fileName: fileUploaderRef.current.files[0].name,
+            fileUrl,
+          });
         }}
         // defaultValue={card.file ? card.file : ""}
       />
@@ -55,19 +73,19 @@ const FileUploader = ({ handleCardChange, card, idx, cloudinary }) => {
             <img src="/spinner.jpg" alt="spinner" />
           </div>
         </label>
-      ) : card.file ? (
+      ) : card.fileName ? (
         <label
           htmlFor={id}
           className={`${styles.fileUploaderLabel} ${styles.fileLoadedLabel}`}
         >
-          {card.file}
+          {card.fileName}
         </label>
-      ) : inputRef.current && inputRef.current.files.length ? (
+      ) : fileUploaderRef.current && fileUploaderRef.current.files.length ? (
         <label
           htmlFor={id}
           className={`${styles.fileUploaderLabel} ${styles.fileLoadedLabel}`}
         >
-          {inputRef.current.files[0].name}
+          {fileUploaderRef.current.files[0].name}
         </label>
       ) : (
         <label htmlFor={id} className={styles.fileUploaderLabel}>

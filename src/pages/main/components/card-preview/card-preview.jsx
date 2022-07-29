@@ -7,7 +7,7 @@ const CardPreivew = ({ card }) => {
       <div className="card-left">
         {/* <strong>{card.file ? card.file : ""}</strong> */}
         <div className="card-profile-img-container">
-          <img src="/blank-profile.png" alt="" />
+          <img src={`${card.fileUrl}`} alt="" />
         </div>
       </div>
       <div className="card-right">

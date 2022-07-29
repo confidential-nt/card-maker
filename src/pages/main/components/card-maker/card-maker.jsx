@@ -14,10 +14,20 @@ const CardMaker = ({
   cloudinary,
 }) => {
   const formRef = useRef();
+  const fileUploaderRef = useRef();
 
-  const handleSumbit = (e) => {
+  const handleSumbit = async (e) => {
     e.preventDefault();
     const { target } = e;
+
+    const formData = new FormData();
+    formData.append("file", fileUploaderRef.current.files[0]);
+    formData.append("upload_preset", "q6nxw20m");
+    // q6nxw20m
+
+    let fileUrl;
+    const json = await cloudinary.uploadImage(formData);
+    fileUrl = json.url;
 
     const cardObj = makeCardObject(
       target.name.value,
@@ -26,7 +36,8 @@ const CardMaker = ({
       target.position.value,
       target.email.value,
       target.description.value,
-      target.file.files.length && target.file.files[0].name
+      target.file.files.length && target.file.files[0].name,
+      fileUrl
     );
 
     onMakeCard(cardObj);
@@ -41,7 +52,8 @@ const CardMaker = ({
     position,
     email,
     desc,
-    file
+    fileName,
+    fileUrl
   ) => {
     const newId = push(child(ref(database.db), "cards")).key;
 
@@ -52,7 +64,8 @@ const CardMaker = ({
       position,
       email,
       desc,
-      file,
+      fileName,
+      fileUrl,
       id: newId,
       uid: user.uid,
     };
@@ -71,6 +84,7 @@ const CardMaker = ({
       ref={formRef}
       onSubmit={handleSumbit}
       id={card.id}
+      encType="multipart/form-data"
     >
       <div className={styles.row}>
         <input
@@ -129,6 +143,7 @@ const CardMaker = ({
           card={card}
           idx={idx}
           cloudinary={cloudinary}
+          fileUploaderRef={fileUploaderRef}
         />
         {card.id ? (
           <button
