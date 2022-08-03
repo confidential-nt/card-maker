@@ -28,15 +28,17 @@ const FileUploader = ({
   };
 
   useDidMountEffect(() => {
-    wait().then(() => {
-      setLoadingState(false);
+    wait(5000).then(() => {
+      if (file) {
+        setLoadingState(false);
 
-      handleCardChange({ fileName: file.fileName, fileUrl: file.fileUrl });
+        handleCardChange({ fileName: file.fileName, fileUrl: file.fileUrl });
+      }
     });
-  }, [loading]);
+  }, [loading, file]);
 
-  const wait = () =>
-    new Promise((resolve) => setTimeout(() => resolve(), 5000));
+  const wait = (time) =>
+    new Promise((resolve) => setTimeout(() => resolve(), time));
 
   return (
     <>
