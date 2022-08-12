@@ -17,17 +17,21 @@ const CardMaker = ({
   const fileUploaderRef = useRef();
 
   const handleSumbit = async (e) => {
+    let fileUrl;
+
     e.preventDefault();
     const { target } = e;
+    if (!fileUploaderRef.current.files[0]) {
+      fileUrl = "/blank-profile.png";
+    } else {
+      const formData = new FormData();
+      formData.append("file", fileUploaderRef.current.files[0]);
+      formData.append("upload_preset", "q6nxw20m");
+      // q6nxw20m
 
-    const formData = new FormData();
-    formData.append("file", fileUploaderRef.current.files[0]);
-    formData.append("upload_preset", "q6nxw20m");
-    // q6nxw20m
-
-    let fileUrl;
-    const json = await cloudinary.uploadImage(formData);
-    fileUrl = json.url;
+      const json = await cloudinary.uploadImage(formData);
+      fileUrl = json.url;
+    }
 
     const cardObj = makeCardObject(
       target.name.value,

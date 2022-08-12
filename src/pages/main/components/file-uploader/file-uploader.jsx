@@ -49,15 +49,20 @@ const FileUploader = ({
         accept="image/*"
         id={id}
         onChange={async (e) => {
+          let fileUrl;
+
           setLoadingState(true);
 
-          const formData = new FormData();
-          formData.append("file", fileUploaderRef.current.files[0]);
-          formData.append("upload_preset", "q6nxw20m");
+          if (!fileUploaderRef.current.files[0]) {
+            fileUrl = "/blank-profile.png";
+          } else {
+            const formData = new FormData();
+            formData.append("file", fileUploaderRef.current.files[0]);
+            formData.append("upload_preset", "q6nxw20m");
 
-          let fileUrl;
-          const json = await cloudinary.uploadImage(formData);
-          fileUrl = json.url;
+            const json = await cloudinary.uploadImage(formData);
+            fileUrl = json.url;
+          }
 
           setOtherFile({
             fileName: fileUploaderRef.current.files[0].name,
