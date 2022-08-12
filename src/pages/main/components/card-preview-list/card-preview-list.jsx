@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import CardPreivew from "../card-preview/card-preview";
 import styles from "./card-preview-list.module.css";
 
-const CardPreviewList = ({ cards }) => (
+const CardPreviewList = memo(({ cards }) => (
   <section className={styles.previewList}>
     <h2>Card Preview</h2>
     {cards.map((card) => {
@@ -11,6 +11,6 @@ const CardPreviewList = ({ cards }) => (
       }
     })}
   </section>
-);
+));
 
 export default CardPreviewList;

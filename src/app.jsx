@@ -2,7 +2,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Main from "./pages/main/main";
 import styles from "./app.module.css";
 import Login from "./pages/login/login";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import HeaderLogoutBtn from "./components/header-login-btn/header-logout-btn";
 import Auth from "./service/auth/auth";
 
@@ -13,18 +13,18 @@ function App({ database, cloudinary }) {
 
   // useEffect 써서? 아님 세션 정보를 가질 방법이 있나?...
 
-  const handleSocialLogin = (loggedUser, authSys) => {
+  const handleSocialLogin = useCallback((loggedUser, authSys) => {
     setAuthSys(authSys);
     setUser(loggedUser);
     // console.log(loggedUser);
-  };
+  }, []);
 
-  const handleLogout = async () => {
+  const handleLogout = useCallback(async () => {
     await mainAuthSys.logout();
     navigate("/");
     setUser(null);
     setAuthSys(null);
-  };
+  }, []);
 
   return (
     <div className={styles.document}>

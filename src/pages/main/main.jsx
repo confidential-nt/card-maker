@@ -1,11 +1,11 @@
 import { ref, update } from "firebase/database";
-import React, { useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CardMakerList from "./components/card-maker-list/card-maker-list";
 import CardPreviewList from "./components/card-preview-list/card-preview-list";
 import styles from "./main.module.css";
 
-const Main = (props) => {
+const Main = memo((props) => {
   const navigate = useNavigate();
   const [cards, setCard] = useState([{}]);
 
@@ -32,7 +32,7 @@ const Main = (props) => {
     });
   }, []);
 
-  const makeCard = (cardObj) => {
+  const makeCard = useCallback((cardObj) => {
     const newCardArr = [...cards];
 
     const targetIdx = newCardArr.findIndex((el) => el.id === undefined);
@@ -42,7 +42,7 @@ const Main = (props) => {
     setCard(newCardArr);
     props.database.writeData("cards", cardObj, cardObj.id);
     saveCardsIdOnDB(newCardArr);
-  };
+  }, []);
 
   const saveCardsIdOnDB = (newCardArr) => {
     const updates = {};
@@ -53,22 +53,22 @@ const Main = (props) => {
     update(ref(props.database.db), updates);
   };
 
-  const updateCard = (cardObj) => {
+  const updateCard = useCallback((cardObj) => {
     const newCardArr = [...cards];
     const targetCardIdx = cards.findIndex((card) => card.id === cardObj.id);
     newCardArr[targetCardIdx] = cardObj;
     props.database.updateDataById("cards", cardObj.id, cardObj);
     setCard(newCardArr);
-  };
+  }, []);
 
-  const deleteCard = (cardObj) => {
+  const deleteCard = useCallback((cardObj) => {
     const newCardArr = [...cards];
     const targetCardIdx = cards.findIndex((card) => card.id === cardObj.id);
     newCardArr.splice(targetCardIdx, 1);
     props.database.deleteDataById("cards", cardObj.id);
 
     setCard(newCardArr);
-  };
+  }, []);
 
   return (
     <>
@@ -86,6 +86,5 @@ const Main = (props) => {
       </main>
     </>
   );
-};
-
+});
 export default Main;

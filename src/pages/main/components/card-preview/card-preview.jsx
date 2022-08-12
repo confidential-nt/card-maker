@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./card-preview.css";
 
-const CardPreivew = ({ card }) => {
+const CardPreivew = memo(({ card }) => {
   return (
     <div className={`card ${card.color}`} id={card.id}>
       <div className="card-left">
@@ -23,7 +23,7 @@ const CardPreivew = ({ card }) => {
       </div>
     </div>
   );
-};
+});
 
 export default CardPreivew;
 

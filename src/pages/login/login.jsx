@@ -1,9 +1,9 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./login.module.css";
 
-const Login = ({ user, AuthSys, onSocialLogin, database }) => {
+const Login = memo(({ user, AuthSys, onSocialLogin, database }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -66,6 +66,6 @@ const Login = ({ user, AuthSys, onSocialLogin, database }) => {
       </div>
     </>
   );
-};
+});
 
 export default Login;
