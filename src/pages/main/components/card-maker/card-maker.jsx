@@ -80,7 +80,7 @@ const CardMaker = memo(
       if (!card.id) return;
       const newCard = { ...card, ...option };
       onUpdateCard(newCard);
-    });
+    }, []);
 
     return (
       <form
